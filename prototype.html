@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DigitalMente — Prototipo Interattivo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue: #2563EB;
+      --blue-dark: #1d4ed8;
+      --blue-light: #EFF6FF;
+      --blue-mid: #dbeafe;
+      --white: #ffffff;
+      --bg: #f8fafc;
+      --text: #1e293b;
+      --gray: #64748b;
+      --gray-light: #f1f5f9;
+      --border: #e2e8f0;
+      --green: #16a34a;
+      --green-light: #dcfce7;
+      --amber: #f59e0b;
+      --amber-light: #fef3c7;
+      --red: #dc2626;
+      --red-light: #fee2e2;
+      --shadow: 0 4px 24px rgba(37,99,235,0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* SHELL */
+    .shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: var(--white);
+      min-height: 100vh;
+      box-shadow: 0 0 60px rgba(0,0,0,0.08);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: var(--blue);
+      padding: 0 2rem;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      cursor: pointer;
+    }
+
+    .navbar-logo span { opacity: 0.7; font-weight: 400; }
+
+    .navbar-nav {
+      display: flex;
+      gap: 0.25rem;
+    }
+
+    .nav-item {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      background: none;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .nav-item:hover { background: rgba(255,255,255,0.15); color: white; }
+    .nav-item.active { background: rgba(255,255,255,0.2); color: white; }
+
+    .help-btn {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 0.5rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.2s;
+    }
+
+    .help-btn:hover { background: rgba(255,255,255,0.3); }
+
+    /* SCREENS */
+    .screen { display: none; padding: 3rem 2.5rem; }
+    .screen.active { display: block; }
+
+    /* BACK LINK */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--blue);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-bottom: 2rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .back-link:hover { border-bottom-color: var(--blue); }
+
+    /* === HOMEPAGE === */
+    .welcome-banner {
+      background: linear-gradient(135deg, var(--blue) 0%, #1d4ed8 100%);
+      border-radius: 20px;
+      padding: 2.5rem;
+      color: white;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .welcome-banner::after {
+      content: '👋';
+      position: absolute;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 4rem;
+      opacity: 0.3;
+    }
+
+    .welcome-banner h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .welcome-banner p {
+      opacity: 0.85;
+      font-size: 1rem;
+    }
+
+    .resume-card {
+      background: var(--amber-light);
+      border: 2px solid var(--amber);
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .resume-card:hover { transform: translateY(-2px); }
+
+    .resume-card-left { display: flex; align-items: center; gap: 1rem; }
+    .resume-icon { font-size: 2rem; }
+
+    .resume-card-left h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .resume-card-left p { font-size: 0.85rem; color: var(--gray); }
+
+    .resume-btn {
+      background: var(--amber);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      white-space: nowrap;
+    }
+
+    .section-heading {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+
+    .percorsi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .percorso-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .percorso-card:hover {
+      border-color: var(--blue);
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+    }
+
+    .percorso-card.completed { border-color: var(--green); background: var(--green-light); }
+    .percorso-card.in-progress { border-color: var(--amber); background: var(--amber-light); }
+
+    .percorso-emoji { font-size: 2.5rem; margin-bottom: 0.75rem; }
+
+    .percorso-card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .percorso-card p {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    .progress-section {
+      background: var(--gray-light);
+      border-radius: 16px;
+      padding: 1.75rem;
+    }
+
+    .progress-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .progress-header h3 { font-size: 1rem; font-weight: 600; }
+    .progress-pct { font-size: 1.5rem; font-weight: 700; color: var(--blue); }
+
+    .progress-bar-bg {
+      background: var(--border);
+      border-radius: 99px;
+      height: 12px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      background: linear-gradient(90deg, var(--blue), #7c3aed);
+      height: 100%;
+      border-radius: 99px;
+      transition: width 1s ease;
+    }
+
+    /* === PERCORSO DETAIL === */
+    .percorso-hero {
+      background: var(--blue-light);
+      border: 1px solid var(--blue-mid);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .percorso-hero-top {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .percorso-big-emoji { font-size: 3rem; }
+
+    .percorso-hero h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .percorso-hero p {
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    .percorso-meta {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+
+    .lezioni-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .lezione-item {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lezione-item:hover {
+      border-color: var(--blue);
+      box-shadow: 0 2px 12px rgba(37,99,235,0.1);
+    }
+
+    .lezione-item.completed { border-color: var(--green); background: var(--green-light); }
+    .lezione-item.locked { opacity: 0.5; cursor: not-allowed; }
+    .lezione-item.locked:hover { border-color: var(--border); box-shadow: none; }
+
+    .lezione-left { display: flex; align-items: center; gap: 1rem; }
+
+    .lezione-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .lezione-item.completed .lezione-num { background: var(--green); }
+    .lezione-item.locked .lezione-num { background: var(--border); color: var(--gray); }
+
+    .lezione-info h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .lezione-info p { font-size: 0.8rem; color: var(--gray); }
+
+    .lezione-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+    }
+
+    .badge-todo { background: var(--blue-light); color: var(--blue); }
+    .badge-done { background: var(--green-light); color: var(--green); }
+    .badge-lock { background: var(--gray-light); color: var(--gray); }
+
+    /* === LEZIONE SCREEN === */
+    .lezione-header {
+      background: var(--blue);
+      color: white;
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .lezione-progress-bar {
+      width: 200px;
+      height: 6px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .lezione-progress-fill {
+      background: white;
+      height: 100%;
+      border-radius: 99px;
+    }
+
+    .video-placeholder {
+      background: var(--text);
+      border-radius: 16px;
+      aspect-ratio: 16/9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e293b 100%);
+    }
+
+    .play-btn {
+      width: 72px;
+      height: 72px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.2s;
+    }
+
+    .video-placeholder:hover .play-btn { transform: scale(1.1); }
+
+    .play-btn::after {
+      content: '▶';
+      color: white;
+      font-size: 1.5rem;
+      margin-left: 4px;
+    }
+
+    .video-label {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.85rem;
+      margin-top: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .lezione-content {
+      background: var(--blue-light);
+      border: 1px solid var(--blue-mid);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .lezione-content h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .lezione-content p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .lezione-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .step-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-item p { font-size: 0.92rem; line-height: 1.5; }
+
+    .exercise-box {
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .exercise-box h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .exercise-box p {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .exercise-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .option-btn {
+      background: var(--gray-light);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Outfit', sans-serif;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .option-btn:hover { border-color: var(--blue); background: var(--blue-light); }
+    .option-btn.correct { border-color: var(--green); background: var(--green-light); color: var(--green); }
+    .option-btn.wrong { border-color: var(--red); background: var(--red-light); color: var(--red); }
+
+    .feedback-msg {
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    .feedback-msg.show { display: block; }
+    .feedback-msg.success { background: var(--green-light); color: #166534; }
+    .feedback-msg.error { background: var(--red-light); color: #991b1b; }
+
+    .lezione-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+    }
+
+    .btn-secondary {
+      background: var(--gray-light);
+      border: 1.5px solid var(--border);
+      color: var(--gray);
+      padding: 0.9rem 1.75rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+
+    .btn-primary {
+      background: var(--blue);
+      border: none;
+      color: white;
+      padding: 0.9rem 2rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--blue-dark); }
+
+    /* === PROFILO === */
+    .profilo-hero {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      background: var(--blue);
+      border-radius: 20px;
+      padding: 2rem;
+      color: white;
+      margin-bottom: 2.5rem;
+    }
+
+    .profilo-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      border: 3px solid rgba(255,255,255,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .profilo-name { font-size: 1.6rem; font-weight: 700; }
+    .profilo-sub { opacity: 0.75; margin-top: 0.25rem; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-card .num {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+    }
+
+    .stat-card .label {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 0.4rem;
+    }
+
+    .badge-list {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .badge-item {
+      background: var(--amber-light);
+      border: 1.5px solid var(--amber);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      text-align: center;
+      min-width: 100px;
+    }
+
+    .badge-emoji { font-size: 1.75rem; }
+    .badge-name { font-size: 0.75rem; font-weight: 600; margin-top: 0.3rem; color: var(--text); }
+
+    .obiettivo-card {
+      background: var(--blue-light);
+      border: 1.5px solid var(--blue-mid);
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .obiettivo-card h4 { font-weight: 600; margin-bottom: 0.25rem; }
+    .obiettivo-card p { font-size: 0.85rem; color: var(--gray); }
+
+    /* === AIUTO === */
+    .aiuto-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .aiuto-card {
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .aiuto-card:hover {
+      border-color: var(--blue);
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+    }
+
+    .aiuto-card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .aiuto-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .aiuto-card p { font-size: 0.85rem; color: var(--gray); }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .faq-item {
+      background: var(--gray-light);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      padding: 1.1rem 1.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-q::after { content: '+'; font-size: 1.25rem; color: var(--blue); }
+    .faq-item.open .faq-q::after { content: '−'; }
+
+    .faq-a {
+      display: none;
+      padding: 0 1.5rem 1.25rem;
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    .faq-item.open .faq-a { display: block; }
+
+    /* === FAMILIARE === */
+    .familiare-header {
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      border-radius: 20px;
+      padding: 2rem;
+      color: white;
+      margin-bottom: 2rem;
+    }
+
+    .familiare-header h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .familiare-header p { opacity: 0.8; }
+
+    .familiare-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .familiare-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .percorso-progress-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .percorso-progress-item:last-child { border-bottom: none; }
+
+    .pp-left { display: flex; align-items: center; gap: 0.75rem; }
+    .pp-emoji { font-size: 1.25rem; }
+    .pp-name { font-size: 0.9rem; font-weight: 500; }
+    .pp-pct { font-size: 0.9rem; font-weight: 700; color: var(--blue); }
+
+    .mini-bar { width: 80px; height: 6px; background: var(--border); border-radius: 99px; overflow: hidden; }
+    .mini-fill { height: 100%; background: var(--blue); border-radius: 99px; }
+
+    .notif-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .notif-item:last-child { border-bottom: none; }
+
+    .notif-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .notif-text { font-size: 0.88rem; color: var(--text); line-height: 1.4; }
+    .notif-time { font-size: 0.75rem; color: var(--gray); margin-top: 0.2rem; }
+
+    /* BACK TO DOCS */
+    .docs-link {
+      display: block;
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--gray-light);
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--gray);
+      text-decoration: none;
+    }
+
+    .docs-link a { color: var(--blue); font-weight: 600; text-decoration: none; }
+    .docs-link a:hover { text-decoration: underline; }
+
+    /* MODAL AIUTO */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overlay.show { display: flex; }
+
+    .modal {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.5rem;
+      max-width: 450px;
+      width: 90%;
+      text-align: center;
+    }
+
+    .modal-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .modal h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .modal p { color: var(--gray); font-size: 0.95rem; margin-bottom: 2rem; }
+
+    .modal-close {
+      background: var(--blue);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-logo" onclick="showScreen('home')">Digital<span>Mente</span></div>
+    <div class="navbar-nav">
+      <button class="nav-item active" onclick="showScreen('home')">🏠 Home</button>
+      <button class="nav-item" onclick="showScreen('percorsi')">📚 Percorsi</button>
+      <button class="nav-item" onclick="showScreen('profilo')">👤 Profilo</button>
+      <button class="nav-item" onclick="showScreen('familiare')">👨‍👩‍👧 Familiare</button>
+    </div>
+    <button class="help-btn" onclick="showScreen('aiuto')">🆘 Aiuto</button>
+  </nav>
+
+  <!-- HOMEPAGE -->
+  <div id="screen-home" class="screen active">
+    <div class="welcome-banner">
+      <h1>Ciao, Mario! 👋</h1>
+      <p>Bentornato su DigitalMente. Continua dove avevi lasciato.</p>
+    </div>
+
+    <div class="resume-card" onclick="showScreen('lezione')">
+      <div class="resume-card-left">
+        <div class="resume-icon">🏥</div>
+        <div>
+          <h3>Riprendi: Servizi sanitari online</h3>
+          <p>Lezione 2 di 5 — Prenotare una visita medica</p>
+        </div>
+      </div>
+      <button class="resume-btn">Continua →</button>
+    </div>
+
+    <p class="section-heading">I tuoi percorsi</p>
+    <div class="percorsi-grid">
+      <div class="percorso-card completed" onclick="showScreen('percorsi')">
+        <div class="percorso-emoji">📧</div>
+        <h3>Email e comunicazione</h3>
+        <p>✓ Completato</p>
+      </div>
+      <div class="percorso-card in-progress" onclick="showScreen('percorsi')">
+        <div class="percorso-emoji">🏥</div>
+        <h3>Servizi sanitari online</h3>
+        <p>In corso — 40%</p>
+      </div>
+      <div class="percorso-card" onclick="showScreen('percorsi')">
+        <div class="percorso-emoji">📹</div>
+        <h3>Videochiamate</h3>
+        <p>Non ancora iniziato</p>
+      </div>
+      <div class="percorso-card" onclick="showScreen('percorsi')">
+        <div class="percorso-emoji">🪪</div>
+        <h3>SPID e documenti</h3>
+        <p>Non ancora iniziato</p>
+      </div>
+      <div class="percorso-card" onclick="showScreen('percorsi')">
+        <div class="percorso-emoji">💳</div>
+        <h3>Pagamenti online</h3>
+        <p>Non ancora iniziato</p>
+      </div>
+      <div class="percorso-card" style="background:var(--gray-light);border-style:dashed;cursor:default;">
+        <div class="percorso-emoji">🔒</div>
+        <h3>In arrivo</h3>
+        <p>Prossimamente</p>
+      </div>
+    </div>
+
+    <div class="progress-section">
+      <div class="progress-header">
+        <h3>Il tuo progresso complessivo</h3>
+        <div class="progress-pct">22%</div>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" style="width:22%"></div>
+      </div>
+      <p style="font-size:0.82rem;color:var(--gray);margin-top:0.75rem;">Hai completato 1 percorso su 5. Ottimo inizio! 🌟</p>
+    </div>
+  </div>
+
+  <!-- PERCORSI -->
+  <div id="screen-percorsi" class="screen">
+    <span class="back-link" onclick="showScreen('home')">← Torna alla Home</span>
+    <div class="percorso-hero">
+      <div class="percorso-hero-top">
+        <div class="percorso-big-emoji">🏥</div>
+        <div>
+          <h2>Servizi sanitari online</h2>
+          <p>Impara a prenotare visite, consultare referti e usare il Fascicolo Sanitario — tutto da casa.</p>
+        </div>
+      </div>
+      <div class="percorso-meta">
+        <div class="meta-item">⏱️ Circa 2 ore totali</div>
+        <div class="meta-item">📖 5 lezioni</div>
+        <div class="meta-item">🎯 Livello: principiante</div>
+      </div>
+    </div>
+
+    <p class="section-heading" style="margin-bottom:1rem;">Lezioni del percorso</p>
+    <div class="lezioni-list">
+      <div class="lezione-item completed">
+        <div class="lezione-left">
+          <div class="lezione-num">✓</div>
+          <div class="lezione-info">
+            <h4>Cos'è il Fascicolo Sanitario Elettronico?</h4>
+            <p>Introduzione ai servizi sanitari digitali</p>
+          </div>
+        </div>
+        <span class="lezione-badge badge-done">Completata</span>
+      </div>
+      <div class="lezione-item" onclick="showScreen('lezione')">
+        <div class="lezione-left">
+          <div class="lezione-num">2</div>
+          <div class="lezione-info">
+            <h4>Prenotare una visita medica online</h4>
+            <p>Come accedere e trovare il tuo medico</p>
+          </div>
+        </div>
+        <span class="lezione-badge badge-todo">Inizia →</span>
+      </div>
+      <div class="lezione-item locked">
+        <div class="lezione-left">
+          <div class="lezione-num">🔒</div>
+          <div class="lezione-info">
+            <h4>Consultare referti e analisi</h4>
+            <p>Disponibile dopo la lezione 2</p>
+          </div>
+        </div>
+        <span class="lezione-badge badge-lock">Bloccata</span>
+      </div>
+      <div class="lezione-item locked">
+        <div class="lezione-left">
+          <div class="lezione-num">🔒</div>
+          <div class="lezione-info">
+            <h4>Ricette digitali: come funzionano</h4>
+            <p>Disponibile dopo la lezione 3</p>
+          </div>
+        </div>
+        <span class="lezione-badge badge-lock">Bloccata</span>
+      </div>
+      <div class="lezione-item locked">
+        <div class="lezione-left">
+          <div class="lezione-num">🔒</div>
+          <div class="lezione-info">
+            <h4>Pagare il ticket online</h4>
+            <p>Disponibile dopo la lezione 4</p>
+          </div>
+        </div>
+        <span class="lezione-badge badge-lock">Bloccata</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEZIONE -->
+  <div id="screen-lezione" class="screen">
+    <span class="back-link" onclick="showScreen('percorsi')">← Torna al percorso</span>
+
+    <div class="lezione-header">
+      <div>
+        <div style="font-size:0.8rem;opacity:0.7;margin-bottom:0.25rem;">Lezione 2 di 5 — Servizi sanitari online</div>
+        <div style="font-size:1.2rem;font-weight:700;">Prenotare una visita medica online</div>
+      </div>
+      <div>
+        <div style="font-size:0.75rem;opacity:0.7;margin-bottom:0.5rem;text-align:right;">Progresso lezione</div>
+        <div class="lezione-progress-bar">
+          <div class="lezione-progress-fill" style="width:60%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-placeholder">
+      <div class="play-btn"></div>
+      <div class="video-label">▶ Guarda il video — Durata: 3 minuti</div>
+    </div>
+
+    <div class="lezione-content">
+      <h3>📖 Come si prenota una visita online</h3>
+      <p>Prenotare una visita medica online è più semplice di quanto pensi. Segui questi passaggi uno alla volta — puoi fermarti quando vuoi.</p>
+      <div class="lezione-steps">
+        <div class="step-item">
+          <div class="step-dot">1</div>
+          <p>Apri il sito del Fascicolo Sanitario Elettronico della tua regione</p>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">2</div>
+          <p>Entra con il tuo SPID o la tua Tessera Sanitaria</p>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">3</div>
+          <p>Cerca "Prenotazione visita" nel menu principale</p>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">4</div>
+          <p>Scegli il tipo di visita e il medico preferito</p>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">5</div>
+          <p>Seleziona giorno e ora — riceverai conferma via SMS</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="exercise-box">
+      <h3>✏️ Prova tu!</h3>
+      <p>Dove trovi il pulsante per prenotare una visita nel Fascicolo Sanitario?</p>
+      <div class="exercise-options" id="exercise">
+        <button class="option-btn" onclick="checkAnswer(this, false)">A) Nel menu "Impostazioni"</button>
+        <button class="option-btn" onclick="checkAnswer(this, true)">B) Nel menu "Prenotazione visita"</button>
+        <button class="option-btn" onclick="checkAnswer(this, false)">C) Sul desktop del telefono</button>
+      </div>
+      <div id="feedback-success" class="feedback-msg success">🎉 Esatto! Bravissimo! Il pulsante si trova nel menu principale sotto "Prenotazione visita".</div>
+      <div id="feedback-error" class="feedback-msg error">Non è corretto, ma non preoccuparti! Riprova — il pulsante si trova nel menu principale.</div>
+    </div>
+
+    <div class="lezione-actions">
+      <button class="btn-secondary" onclick="showScreen('percorsi')">← Ripeti il percorso</button>
+      <button class="btn-primary" onclick="lessonComplete()">Avanti → Lezione 3</button>
+    </div>
+  </div>
+
+  <!-- PROFILO -->
+  <div id="screen-profilo" class="screen">
+    <div class="profilo-hero">
+      <div class="profilo-avatar">M</div>
+      <div>
+        <div class="profilo-name">Mario Rossi</div>
+        <div class="profilo-sub">Iscritto da 3 settimane · Torino</div>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="num">1</div>
+        <div class="label">Percorso completato</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">6</div>
+        <div class="label">Lezioni completate</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">22%</div>
+        <div class="label">Progresso totale</div>
+      </div>
+    </div>
+
+    <p class="section-heading" style="margin-bottom:1rem;">I tuoi badge 🏆</p>
+    <div class="badge-list" style="margin-bottom:2.5rem;">
+      <div class="badge-item">
+        <div class="badge-emoji">🚀</div>
+        <div class="badge-name">Primo passo</div>
+      </div>
+      <div class="badge-item">
+        <div class="badge-emoji">📧</div>
+        <div class="badge-name">Esperto email</div>
+      </div>
+      <div class="badge-item" style="opacity:0.4;">
+        <div class="badge-emoji">🏥</div>
+        <div class="badge-name">Salute digitale</div>
+      </div>
+      <div class="badge-item" style="opacity:0.4;">
+        <div class="badge-emoji">🪪</div>
+        <div class="badge-name">Cittadino SPID</div>
+      </div>
+    </div>
+
+    <p class="section-heading" style="margin-bottom:1rem;">Prossimo obiettivo consigliato</p>
+    <div class="obiettivo-card">
+      <div>
+        <h4>🏥 Completa i Servizi sanitari online</h4>
+        <p>Hai già fatto 2 lezioni su 5. Mancano ancora 3 lezioni!</p>
+      </div>
+      <button class="btn-primary" onclick="showScreen('percorsi')" style="white-space:nowrap;">Continua →</button>
+    </div>
+  </div>
+
+  <!-- AIUTO -->
+  <div id="screen-aiuto" class="screen">
+    <span class="back-link" onclick="showScreen('home')">← Torna alla Home</span>
+    <h2 style="font-size:1.6rem;font-weight:700;margin-bottom:0.5rem;">Come possiamo aiutarti? 🆘</h2>
+    <p style="color:var(--gray);margin-bottom:2rem;">Siamo qui per te. Scegli come vuoi ricevere supporto.</p>
+
+    <div class="aiuto-grid">
+      <div class="aiuto-card" onclick="showModal()">
+        <div class="aiuto-card-icon">💬</div>
+        <h3>Chat con un Tutor</h3>
+        <p>Un tutor risponde entro pochi minuti</p>
+      </div>
+      <div class="aiuto-card" onclick="showModal()">
+        <div class="aiuto-card-icon">📞</div>
+        <h3>Chiama la Famiglia</h3>
+        <p>Avvisa subito chi ti aiuta di solito</p>
+      </div>
+      <div class="aiuto-card">
+        <div class="aiuto-card-icon">❓</div>
+        <h3>Domande frequenti</h3>
+        <p>Risposte alle domande più comuni</p>
+      </div>
+    </div>
+
+    <p class="section-heading" style="margin-bottom:1rem;">Domande frequenti</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Come faccio a ricominciare una lezione dall'inizio?</div>
+        <div class="faq-a">Puoi ricominciare una lezione in qualsiasi momento. Vai al percorso, clicca sulla lezione e premi il pulsante "Ripeti dall'inizio". Non perdi i tuoi progressi!</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Ho sbagliato l'esercizio, è un problema?</div>
+        <div class="faq-a">Assolutamente no! Gli errori fanno parte dell'apprendimento. Puoi riprovare tutte le volte che vuoi. La piattaforma non ti penalizza mai per un errore.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Come posso far vedere i miei progressi a mio figlio?</div>
+        <div class="faq-a">Vai nella sezione "Familiare" dal menu in alto. Da lì puoi invitare tuo figlio a seguire i tuoi progressi. Vedrà cosa stai imparando e ti potrà lasciare messaggi di incoraggiamento.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Il sito può essere usato anche sul tablet?</div>
+        <div class="faq-a">Sì, DigitalMente funziona perfettamente su tablet, computer e qualsiasi dispositivo con un browser internet. Puoi usarlo dove preferisci.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAMILIARE -->
+  <div id="screen-familiare" class="screen">
+    <div class="familiare-header">
+      <h2>Area Familiare 👨‍👩‍👧</h2>
+      <p>Segui i progressi di Mario e aiutalo nel suo percorso digitale</p>
+    </div>
+
+    <div class="familiare-card">
+      <h3>📊 Progressi di Mario</h3>
+      <div>
+        <div class="percorso-progress-item">
+          <div class="pp-left">
+            <div class="pp-emoji">📧</div>
+            <div class="pp-name">Email e comunicazione</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:1rem;">
+            <div class="mini-bar"><div class="mini-fill" style="width:100%;background:var(--green);"></div></div>
+            <div class="pp-pct" style="color:var(--green);">100% ✓</div>
+          </div>
+        </div>
+        <div class="percorso-progress-item">
+          <div class="pp-left">
+            <div class="pp-emoji">🏥</div>
+            <div class="pp-name">Servizi sanitari online</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:1rem;">
+            <div class="mini-bar"><div class="mini-fill" style="width:40%"></div></div>
+            <div class="pp-pct">40%</div>
+          </div>
+        </div>
+        <div class="percorso-progress-item">
+          <div class="pp-left">
+            <div class="pp-emoji">📹</div>
+            <div class="pp-name">Videochiamate</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:1rem;">
+            <div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div>
+            <div class="pp-pct" style="color:var(--gray);">0%</div>
+          </div>
+        </div>
+        <div class="percorso-progress-item">
+          <div class="pp-left">
+            <div class="pp-emoji">🪪</div>
+            <div class="pp-name">SPID e documenti</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:1rem;">
+            <div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div>
+            <div class="pp-pct" style="color:var(--gray);">0%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="familiare-card">
+      <h3>🔔 Ultime notifiche</h3>
+      <div class="notif-list">
+        <div class="notif-item">
+          <div class="notif-dot"></div>
+          <div>
+            <div class="notif-text">Mario ha completato la Lezione 1 di "Servizi sanitari online"</div>
+            <div class="notif-time">Ieri, ore 15:32</div>
+          </div>
+        </div>
+        <div class="notif-item">
+          <div class="notif-dot"></div>
+          <div>
+            <div class="notif-text">Mario ha completato il percorso "Email e comunicazione" 🎉</div>
+            <div class="notif-time">3 giorni fa</div>
+          </div>
+        </div>
+        <div class="notif-item">
+          <div class="notif-dot" style="background:var(--amber);"></div>
+          <div>
+            <div class="notif-text">Mario ha avuto difficoltà con la Lezione 2 — ha usato il tasto Aiuto</div>
+            <div class="notif-time">5 giorni fa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="familiare-card">
+      <h3>🎯 Suggerisci un obiettivo</h3>
+      <p style="font-size:0.9rem;color:var(--gray);margin-bottom:1rem;">Puoi suggerire a Mario il prossimo percorso da completare.</p>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <button class="btn-primary" onclick="showModal()">Suggerisci Videochiamate</button>
+        <button class="btn-secondary" onclick="showModal()">Suggerisci SPID</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BACK TO DOCS -->
+  <div class="docs-link">
+    Questo è il prototipo interattivo di DigitalMente. <a href="index.html">← Torna alla documentazione del progetto UX</a>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="modal" onclick="hideModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-icon">🚧</div>
+    <h3>Funzione in sviluppo</h3>
+    <p>Questa funzione è inclusa nel progetto ma non è interattiva nel prototipo. In una versione reale di DigitalMente sarebbe pienamente operativa.</p>
+    <button class="modal-close" onclick="hideModal()">Ho capito</button>
+  </div>
+</div>
+
+<script>
+  function showScreen(name) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById('screen-' + name).classList.add('active');
+    
+    const map = { home: 0, percorsi: 1, profilo: 2, familiare: 3 };
+    if (map[name] !== undefined) {
+      document.querySelectorAll('.nav-item')[map[name]].classList.add('active');
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function checkAnswer(btn, isCorrect) {
+    const options = document.querySelectorAll('.option-btn');
+    options.forEach(o => o.disabled = true);
+    
+    if (isCorrect) {
+      btn.classList.add('correct');
+      document.getElementById('feedback-success').classList.add('show');
+    } else {
+      btn.classList.add('wrong');
+      document.getElementById('feedback-error').classList.add('show');
+      setTimeout(() => {
+        options.forEach(o => { o.disabled = false; o.classList.remove('wrong'); });
+        document.getElementById('feedback-error').classList.remove('show');
+      }, 2500);
+    }
+  }
+
+  function lessonComplete() {
+    showScreen('percorsi');
+    setTimeout(() => alert('🎉 Ottimo lavoro! Lezione completata! Torna domani per la prossima.'), 100);
+  }
+
+  function toggleFaq(el) {
+    el.parentElement.classList.toggle('open');
+  }
+
+  function showModal() {
+    document.getElementById('modal').classList.add('show');
+  }
+
+  function hideModal() {
+    document.getElementById('modal').classList.remove('show');
+  }
+</script>
+</body>
+</html>
