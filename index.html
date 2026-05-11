@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
@@ -20,927 +21,1007 @@
       --text: #1f2937;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-    }
-
-    /* NAV */
-    nav {
-      position: sticky;
-      top: 0;
-      background: var(--ink);
-      z-index: 100;
-      padding: 0 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-    }
-
-    nav .logo {
-      font-family: 'Fraunces', serif;
-      font-weight: 600;
-      font-size: 1.25rem;
-      color: var(--white);
-      letter-spacing: -0.02em;
-    }
-
-    nav .logo span { color: var(--accent); }
-
-    nav ul {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    nav ul a {
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
-    nav ul a:hover { color: var(--accent); }
-
-    nav .proto-btn {
-      background: var(--accent);
-      color: var(--ink);
-      padding: 0.5rem 1.25rem;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 0.85rem;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-
-    nav .proto-btn:hover { opacity: 0.85; }
-
-    /* HERO */
-    .hero {
-      background: var(--ink);
-      color: var(--white);
-      padding: 7rem 3rem 6rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -100px;
-      right: -100px;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(37,99,235,0.3) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-meta {
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .hero p {
-      font-size: 1.15rem;
-      color: rgba(255,255,255,0.7);
-      max-width: 600px;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-tags {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .hero-tags span {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.8);
-      padding: 0.35rem 0.9rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 500;
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 3rem;
-      margin-top: 4rem;
-      padding-top: 3rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .stat-num {
-      font-family: 'Fraunces', serif;
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--accent);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.5);
-      margin-top: 0.25rem;
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 5rem 3rem;
-    }
-
-    section:nth-child(even) {
-      background: var(--white);
-    }
-
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 0.75rem;
-    }
-
-    .section-title {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 600;
-      color: var(--ink);
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-
-    .section-subtitle {
-      color: var(--gray);
-      font-size: 1.05rem;
-      max-width: 640px;
-      margin-bottom: 3rem;
-    }
-
-    /* BRIEF */
-    .brief-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-
-    .brief-card {
-      background: var(--blue-light);
-      border: 1px solid #dbeafe;
-      border-radius: 12px;
-      padding: 1.75rem;
-    }
-
-    .brief-card h3 {
-      font-family: 'Fraunces', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 1rem;
-    }
-
-    .brief-card ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .brief-card ul li {
-      font-size: 0.9rem;
-      color: var(--text);
-      padding-left: 1rem;
-      position: relative;
-    }
-
-    .brief-card ul li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--blue);
-      font-size: 0.75rem;
-    }
-
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-    }
-
-    .kpi-card {
-      background: var(--ink);
-      color: var(--white);
-      border-radius: 12px;
-      padding: 1.5rem;
-      text-align: center;
-    }
-
-    .kpi-icon {
-      font-size: 1.5rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .kpi-card p {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.4;
-    }
-
-    /* PERSONAS */
-    .personas-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-    }
-
-    .persona-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .persona-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
-    }
-
-    .persona-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--blue);
-    }
-
-    .persona-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .persona-avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-weight: 700;
-      font-family: 'Fraunces', serif;
-      color: var(--white);
-      background: var(--blue);
-      flex-shrink: 0;
-    }
-
-    .persona-name {
-      font-family: 'Fraunces', serif;
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .persona-role {
-      font-size: 0.85rem;
-      color: var(--gray);
-    }
-
-    .persona-quote {
-      font-style: italic;
-      color: var(--blue);
-      font-size: 0.95rem;
-      margin-bottom: 1.25rem;
-      padding-left: 1rem;
-      border-left: 3px solid var(--blue);
-    }
-
-    .persona-cols {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .persona-col h4 {
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--gray);
-      margin-bottom: 0.5rem;
-    }
-
-    .persona-col ul {
-      list-style: none;
-    }
-
-    .persona-col ul li {
-      font-size: 0.85rem;
-      color: var(--text);
-      padding: 0.25rem 0;
-      padding-left: 1rem;
-      position: relative;
-    }
-
-    .persona-col.goals ul li::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      color: var(--green);
-      font-size: 0.75rem;
-    }
-
-    .persona-col.frustrations ul li::before {
-      content: '✗';
-      position: absolute;
-      left: 0;
-      color: #dc2626;
-      font-size: 0.75rem;
-    }
-
-    /* SCENARI */
-    .scenari-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .scenario-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .scenario-header {
-      background: var(--ink);
-      color: var(--white);
-      padding: 1.25rem 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .scenario-header h3 {
-      font-family: 'Fraunces', serif;
-      font-size: 1.2rem;
-      font-weight: 600;
-    }
-
-    .scenario-header span {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.6);
-    }
-
-    .scenario-body {
-      padding: 2rem;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1rem;
-    }
-
-    .scenario-step {
-      text-align: center;
-    }
-
-    .step-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--blue-light);
-      color: var(--blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      margin: 0 auto 0.5rem;
-      font-weight: 700;
-    }
-
-    .step-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--gray);
-      margin-bottom: 0.4rem;
-    }
-
-    .step-text {
-      font-size: 0.82rem;
-      color: var(--text);
-      line-height: 1.4;
-    }
-
-    /* COMPETITIVE */
-    .competitive-table {
-      width: 100%;
-      border-collapse: collapse;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-
-    .competitive-table th {
-      background: var(--ink);
-      color: var(--white);
-      padding: 1rem 1.25rem;
-      text-align: left;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .competitive-table td {
-      padding: 1rem 1.25rem;
-      font-size: 0.9rem;
-      border-bottom: 1px solid var(--border);
-      background: var(--white);
-    }
-
-    .competitive-table tr:last-child td { border-bottom: none; }
-    .competitive-table tr:hover td { background: var(--blue-light); }
-
-    .tag-pro {
-      background: #dcfce7;
-      color: #166534;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      display: inline-block;
-      margin: 0.1rem;
-    }
-
-    .tag-con {
-      background: #fee2e2;
-      color: #991b1b;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      display: inline-block;
-      margin: 0.1rem;
-    }
-
-    /* ALBERATURA */
-    .tree-container {
-      overflow-x: auto;
-      padding: 2rem 0;
-    }
-
-    .tree {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-width: 900px;
-    }
-
-    .tree-root {
-      background: var(--ink);
-      color: var(--white);
-      padding: 0.75rem 2rem;
-      border-radius: 8px;
-      font-family: 'Fraunces', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0;
-    }
-
-    .tree-line-down {
-      width: 2px;
-      height: 40px;
-      background: var(--border);
-    }
-
-    .tree-branches {
-      display: flex;
-      gap: 0;
-      position: relative;
-      align-items: flex-start;
-    }
-
-    .tree-branches::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 8%;
-      right: 8%;
-      height: 2px;
-      background: var(--border);
-    }
-
-    .tree-branch {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex: 1;
-      padding: 0 0.5rem;
-    }
-
-    .branch-line {
-      width: 2px;
-      height: 30px;
-      background: var(--border);
-    }
-
-    .branch-node {
-      background: var(--blue);
-      color: var(--white);
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-align: center;
-      width: 100%;
-      max-width: 140px;
-    }
-
-    .branch-children {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      margin-top: 1rem;
-      width: 100%;
-      align-items: center;
-    }
-
-    .leaf-node {
-      background: var(--blue-light);
-      border: 1px solid #bfdbfe;
-      color: var(--ink);
-      padding: 0.35rem 0.75rem;
-      border-radius: 4px;
-      font-size: 0.78rem;
-      text-align: center;
-      width: 90%;
-      max-width: 130px;
-    }
-
-    /* ER DIAGRAM */
-    .er-container {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 3rem;
-    }
-
-    .er-diagram {
-      display: grid;
-      grid-template-areas:
-        ". tutor . familiare ."
-        "lezione . utente . ."
-        ". percorso . progresso .";
-      grid-template-columns: 1fr 0.5fr 1fr 0.5fr 1fr;
-      grid-template-rows: auto auto auto;
-      gap: 2rem;
-      position: relative;
-      align-items: center;
-      justify-items: center;
-    }
-
-    .er-entity {
-      background: var(--ink);
-      color: var(--white);
-      border-radius: 10px;
-      overflow: hidden;
-      width: 160px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    }
-
-    .er-entity-name {
-      background: var(--blue);
-      padding: 0.6rem 1rem;
-      font-family: 'Fraunces', serif;
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-align: center;
-    }
-
-    .er-entity-attrs {
-      padding: 0.75rem 1rem;
-    }
-
-    .er-entity-attrs p {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.7);
-      padding: 0.2rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .er-entity-attrs p:last-child { border-bottom: none; }
-
-    .er-entity-attrs p.pk {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .er-entity.utente { grid-area: utente; }
-    .er-entity.percorso { grid-area: percorso; }
-    .er-entity.lezione { grid-area: lezione; }
-    .er-entity.progresso { grid-area: progresso; }
-    .er-entity.familiare { grid-area: familiare; }
-    .er-entity.tutor { grid-area: tutor; }
-
-    .er-relations {
-      margin-top: 2rem;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
-
-    .er-relation {
-      background: var(--blue-light);
-      border: 1px solid #bfdbfe;
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.85rem;
-    }
-
-    .er-relation strong { color: var(--blue); }
-    .er-relation .rel-verb { color: var(--gray); font-style: italic; }
-
-    /* MAPPE FUNZIONALI */
-    .mappe-tabs {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .tab-btn {
-      padding: 0.5rem 1.25rem;
-      border: 1px solid var(--border);
-      background: var(--white);
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: 500;
-      font-family: 'Outfit', sans-serif;
-      color: var(--gray);
-      transition: all 0.2s;
-    }
-
-    .tab-btn.active {
-      background: var(--blue);
-      border-color: var(--blue);
-      color: var(--white);
-    }
-
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-
-    .mappa-table {
-      width: 100%;
-      border-collapse: collapse;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-
-    .mappa-table th {
-      background: var(--ink);
-      color: var(--white);
-      padding: 0.9rem 1.25rem;
-      text-align: left;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .mappa-table td {
-      padding: 0.9rem 1.25rem;
-      font-size: 0.88rem;
-      border-bottom: 1px solid var(--border);
-      background: var(--white);
-      vertical-align: top;
-    }
-
-    .mappa-table tr:last-child td { border-bottom: none; }
-    .mappa-table tr:hover td { background: var(--blue-light); }
-
-    .mappa-table td:first-child {
-      font-weight: 600;
-      color: var(--ink);
-      width: 30%;
-    }
-
-    /* PROTOTIPO CTA */
-    .proto-cta {
-      background: linear-gradient(135deg, var(--ink) 0%, #1e3a8a 100%);
-      color: var(--white);
-      border-radius: 20px;
-      padding: 4rem;
-      text-align: center;
-    }
-
-    .proto-cta h2 {
-      font-family: 'Fraunces', serif;
-      font-size: 2.5rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .proto-cta p {
-      color: rgba(255,255,255,0.7);
-      font-size: 1.05rem;
-      margin-bottom: 2rem;
-    }
-
-    .proto-cta a {
-      display: inline-block;
-      background: var(--accent);
-      color: var(--ink);
-      padding: 1rem 2.5rem;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-
-    .proto-cta a:hover { opacity: 0.85; }
-
-    .proto-screens {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .proto-screen-tag {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.8);
-      padding: 0.4rem 1rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-    }
-
-    /* PROBLEM STATEMENT */
-    .problem-box {
-      background: var(--ink);
-      color: var(--white);
-      border-radius: 16px;
-      padding: 2.5rem;
-      margin-bottom: 2.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .problem-box::before {
-      content: '"';
-      position: absolute;
-      top: -20px;
-      left: 20px;
-      font-family: 'Fraunces', serif;
-      font-size: 12rem;
-      color: rgba(255,255,255,0.05);
-      line-height: 1;
-    }
-
-    .problem-box p {
-      font-size: 1.15rem;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.9);
-      position: relative;
-    }
-
-    .hmw-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1rem;
-    }
-
-    .hmw-card {
-      background: var(--blue-light);
-      border: 1px solid #bfdbfe;
-      border-radius: 10px;
-      padding: 1.25rem;
-      font-size: 0.9rem;
-      color: var(--ink);
-      line-height: 1.5;
-    }
-
-    .hmw-card strong {
-      display: block;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 0.5rem;
-    }
-
-    /* REQUISITI */
-    .req-cols {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-
-    .req-col h3 {
-      font-family: 'Fraunces', serif;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--blue);
-    }
-
-    .req-col ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .req-col ul li {
-      font-size: 0.88rem;
-      color: var(--text);
-      padding-left: 1.25rem;
-      position: relative;
-    }
-
-    .req-col ul li::before {
-      content: '▸';
-      position: absolute;
-      left: 0;
-      color: var(--blue);
-    }
-
-    /* FOOTER */
-    footer {
-      background: var(--ink);
-      color: rgba(255,255,255,0.5);
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.85rem;
-    }
-
-    footer strong { color: var(--white); }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      nav ul { display: none; }
-      .brief-grid { grid-template-columns: 1fr; }
-      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-      .personas-grid { grid-template-columns: 1fr; }
-      .scenario-body { grid-template-columns: 1fr; }
-      .req-cols { grid-template-columns: 1fr; }
-      .er-relations { grid-template-columns: 1fr; }
-      section { padding: 3rem 1.5rem; }
-    }
+```
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  background: var(--ink);
+  z-index: 100;
+  padding: 0 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+nav .logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+
+nav .logo span { color: var(--accent); }
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+nav ul a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+nav ul a:hover { color: var(--accent); }
+
+nav .proto-btn {
+  background: var(--accent);
+  color: var(--ink);
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+nav .proto-btn:hover { opacity: 0.85; }
+
+/* HERO */
+.hero {
+  background: var(--ink);
+  color: var(--white);
+  padding: 7rem 3rem 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(37,99,235,0.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-meta {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero p {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.7);
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+}
+
+.hero-tags {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.hero-tags span {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.8);
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.stat-num {
+  font-family: 'Fraunces', serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  margin-top: 0.25rem;
+}
+
+/* SECTIONS */
+section {
+  padding: 5rem 3rem;
+}
+
+section:nth-child(even) {
+  background: var(--white);
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  color: var(--gray);
+  font-size: 1.05rem;
+  max-width: 640px;
+  margin-bottom: 3rem;
+}
+
+/* BRIEF */
+.brief-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.brief-card {
+  background: var(--blue-light);
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+  padding: 1.75rem;
+}
+
+.brief-card h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+
+.brief-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.brief-card ul li {
+  font-size: 0.9rem;
+  color: var(--text);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.brief-card ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--blue);
+  font-size: 0.75rem;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.kpi-card {
+  background: var(--ink);
+  color: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.kpi-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.kpi-card p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.4;
+}
+
+/* PERSONAS */
+.personas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.persona-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.persona-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+}
+
+.persona-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--blue);
+}
+
+.persona-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.persona-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: 'Fraunces', serif;
+  color: var(--white);
+  background: var(--blue);
+  flex-shrink: 0;
+}
+
+.persona-name {
+  font-family: 'Fraunces', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.persona-role {
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+.persona-quote {
+  font-style: italic;
+  color: var(--blue);
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--blue);
+}
+
+.persona-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.persona-col h4 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gray);
+  margin-bottom: 0.5rem;
+}
+
+.persona-col ul {
+  list-style: none;
+}
+
+.persona-col ul li {
+  font-size: 0.85rem;
+  color: var(--text);
+  padding: 0.25rem 0;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.persona-col.goals ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-size: 0.75rem;
+}
+
+.persona-col.frustrations ul li::before {
+  content: '✗';
+  position: absolute;
+  left: 0;
+  color: #dc2626;
+  font-size: 0.75rem;
+}
+
+/* SCENARI */
+.scenari-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.scenario-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.scenario-header {
+  background: var(--ink);
+  color: var(--white);
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.scenario-header h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.scenario-header span {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+}
+
+.scenario-body {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.scenario-step {
+  text-align: center;
+}
+
+.step-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--blue-light);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  margin: 0 auto 0.5rem;
+  font-weight: 700;
+}
+
+.step-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gray);
+  margin-bottom: 0.4rem;
+}
+
+.step-text {
+  font-size: 0.82rem;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* COMPETITIVE */
+.competitive-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.competitive-table th {
+  background: var(--ink);
+  color: var(--white);
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.competitive-table td {
+  padding: 1rem 1.25rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+}
+
+.competitive-table tr:last-child td { border-bottom: none; }
+.competitive-table tr:hover td { background: var(--blue-light); }
+
+.tag-pro {
+  background: #dcfce7;
+  color: #166534;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+  margin: 0.1rem;
+}
+
+.tag-con {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+  margin: 0.1rem;
+}
+
+/* ALBERATURA */
+.tree-container {
+  overflow-x: auto;
+  padding: 2rem 0;
+}
+
+.tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 900px;
+}
+
+.tree-root {
+  background: var(--ink);
+  color: var(--white);
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.tree-line-down {
+  width: 2px;
+  height: 40px;
+  background: var(--border);
+}
+
+.tree-branches {
+  display: flex;
+  gap: 0;
+  position: relative;
+  align-items: flex-start;
+}
+
+.tree-branches::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background: var(--border);
+}
+
+.tree-branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 0 0.5rem;
+}
+
+.branch-line {
+  width: 2px;
+  height: 30px;
+  background: var(--border);
+}
+
+.branch-node {
+  background: var(--blue);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+  max-width: 140px;
+}
+
+.branch-children {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  width: 100%;
+  align-items: center;
+}
+
+.leaf-node {
+  background: var(--blue-light);
+  border: 1px solid #bfdbfe;
+  color: var(--ink);
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  text-align: center;
+  width: 90%;
+  max-width: 130px;
+}
+
+/* ER DIAGRAM */
+.er-container {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 3rem;
+}
+
+.er-diagram {
+  display: grid;
+  grid-template-areas:
+    ". tutor . familiare ."
+    "lezione . utente . ."
+    ". percorso . progresso .";
+  grid-template-columns: 1fr 0.5fr 1fr 0.5fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 2rem;
+  position: relative;
+  align-items: center;
+  justify-items: center;
+}
+
+.er-entity {
+  background: var(--ink);
+  color: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  width: 160px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.er-entity-name {
+  background: var(--blue);
+  padding: 0.6rem 1rem;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.er-entity-attrs {
+  padding: 0.75rem 1rem;
+}
+
+.er-entity-attrs p {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.7);
+  padding: 0.2rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.er-entity-attrs p:last-child { border-bottom: none; }
+
+.er-entity-attrs p.pk {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.er-entity.utente { grid-area: utente; }
+.er-entity.percorso { grid-area: percorso; }
+.er-entity.lezione { grid-area: lezione; }
+.er-entity.progresso { grid-area: progresso; }
+.er-entity.familiare { grid-area: familiare; }
+.er-entity.tutor { grid-area: tutor; }
+
+.er-relations {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.er-relation {
+  background: var(--blue-light);
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+}
+
+.er-relation-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.er-relation strong { color: var(--blue); }
+.er-relation .rel-verb { color: var(--gray); font-style: italic; }
+
+.er-relation-attrs {
+  border-top: 1px solid #bfdbfe;
+  padding-top: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.er-relation-attrs p {
+  font-size: 0.75rem;
+  color: var(--gray);
+  padding: 0.15rem 0;
+}
+
+.er-relation-attrs p.attr-name {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* TAVOLA SINOTTICA */
+.sinottica-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin-top: 2rem;
+}
+
+.sinottica-table th {
+  background: var(--ink);
+  color: var(--white);
+  padding: 0.9rem 1.25rem;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.sinottica-table td {
+  padding: 0.9rem 1.25rem;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+  vertical-align: top;
+}
+
+.sinottica-table tr:last-child td { border-bottom: none; }
+.sinottica-table tr:hover td { background: var(--blue-light); }
+
+.sinottica-table td:first-child {
+  font-weight: 700;
+  color: var(--blue);
+  width: 20%;
+}
+
+.sinottica-table td:nth-child(2) {
+  font-weight: 600;
+  color: var(--ink);
+  width: 20%;
+}
+
+.sinottica-table .tag-val {
+  display: inline-block;
+  background: var(--gray-light);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  margin: 0.1rem;
+  color: var(--text);
+}
+
+/* MAPPE FUNZIONALI */
+.mappe-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--border);
+  background: var(--white);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: 'Outfit', sans-serif;
+  color: var(--gray);
+  transition: all 0.2s;
+}
+
+.tab-btn.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--white);
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.mappa-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.mappa-table th {
+  background: var(--ink);
+  color: var(--white);
+  padding: 0.9rem 1.25rem;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.mappa-table td {
+  padding: 0.9rem 1.25rem;
+  font-size: 0.88rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+  vertical-align: top;
+}
+
+.mappa-table tr:last-child td { border-bottom: none; }
+.mappa-table tr:hover td { background: var(--blue-light); }
+
+.mappa-table td:first-child {
+  font-weight: 600;
+  color: var(--ink);
+  width: 30%;
+}
+
+/* PROTOTIPO CTA */
+.proto-cta {
+  background: linear-gradient(135deg, var(--ink) 0%, #1e3a8a 100%);
+  color: var(--white);
+  border-radius: 20px;
+  padding: 4rem;
+  text-align: center;
+}
+
+.proto-cta h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.proto-cta p {
+  color: rgba(255,255,255,0.7);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+.proto-cta a {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--ink);
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.proto-cta a:hover { opacity: 0.85; }
+
+.proto-screens {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.proto-screen-tag {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.8);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+/* PROBLEM STATEMENT */
+.problem-box {
+  background: var(--ink);
+  color: var(--white);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.problem-box::before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  font-family: 'Fraunces', serif;
+  font-size: 12rem;
+  color: rgba(255,255,255,0.05);
+  line-height: 1;
+}
+
+.problem-box p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.9);
+  position: relative;
+}
+
+.hmw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.hmw-card {
+  background: var(--blue-light);
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  padding: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.hmw-card strong {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 0.5rem;
+}
+
+/* REQUISITI */
+.req-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.req-col h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--blue);
+}
+
+.req-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.req-col ul li {
+  font-size: 0.88rem;
+  color: var(--text);
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.req-col ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--blue);
+}
+
+/* FOOTER */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.85rem;
+}
+
+footer strong { color: var(--white); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav ul { display: none; }
+  .brief-grid { grid-template-columns: 1fr; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .personas-grid { grid-template-columns: 1fr; }
+  .scenario-body { grid-template-columns: 1fr; }
+  .req-cols { grid-template-columns: 1fr; }
+  .er-relations { grid-template-columns: 1fr; }
+  section { padding: 3rem 1.5rem; }
+}
+```
+
   </style>
 </head>
 <body>
 
 <!-- NAV -->
+
 <nav>
   <div class="logo">Digital<span>Mente</span> <span style="color:rgba(255,255,255,0.3);font-weight:300;font-size:0.9rem">— UX Project</span></div>
   <ul>
@@ -954,6 +1035,7 @@
 </nav>
 
 <!-- HERO -->
+
 <div class="hero">
   <p class="hero-meta">UX Design Project · Corso di Progettazione Funzionale · A.A. 2025/2026</p>
   <h1>Digital<em>Mente</em></h1>
@@ -986,6 +1068,7 @@
 </div>
 
 <!-- BRIEF -->
+
 <section id="brief">
   <div class="section-label">Fase 0</div>
   <h2 class="section-title">Brief del Progetto</h2>
@@ -1067,18 +1150,21 @@
 </section>
 
 <!-- RICERCA -->
+
 <section id="ricerca">
   <div class="section-label">Fase 1</div>
   <h2 class="section-title">Ricerca</h2>
   <p class="section-subtitle">Proto-personas, scenari, analisi competitiva e desk research per comprendere il problema.</p>
 
   <!-- PROBLEM STATEMENT -->
+
   <h3 style="font-family:'Fraunces',serif;font-size:1.3rem;color:var(--ink);margin-bottom:1rem;">Problem Statement</h3>
   <div class="problem-box" style="margin-bottom:3rem;">
     <p>Gli anziani italiani over 65 hanno bisogno di imparare a usare i servizi digitali in modo autonomo e senza ansia, perché le piattaforme esistenti non sono progettate per loro e la dipendenza da altri li priva di indipendenza e dignità.</p>
   </div>
 
   <!-- HMW -->
+
   <h3 style="font-family:'Fraunces',serif;font-size:1.3rem;color:var(--ink);margin-bottom:1rem;">How Might We</h3>
   <div class="hmw-grid" style="margin-bottom:3rem;">
     <div class="hmw-card"><strong>HMW 1</strong>Come potremmo fare sì che un anziano si senta competente e non stupido mentre impara?</div>
@@ -1089,6 +1175,7 @@
   </div>
 
   <!-- REQUISITI -->
+
   <h3 style="font-family:'Fraunces',serif;font-size:1.3rem;color:var(--ink);margin-bottom:1rem;">Requisiti di Design</h3>
   <div class="req-cols" style="margin-bottom:3rem;">
     <div class="req-col">
@@ -1124,265 +1211,274 @@
   </div>
 
   <!-- PERSONAS -->
+
   <h3 style="font-family:'Fraunces',serif;font-size:1.3rem;color:var(--ink);margin-bottom:0.5rem;">Proto-Personas</h3>
   <p style="color:var(--gray);font-size:0.9rem;margin-bottom:1.5rem;">Basate su assunzioni ragionate; in un progetto reale sarebbero validate da ricerca etnografica.</p>
   <div class="personas-grid" style="margin-bottom:3rem;">
 
-    <div class="persona-card">
-      <div class="persona-header">
-        <div class="persona-avatar">M</div>
-        <div>
-          <div class="persona-name">Mario, 68 anni</div>
-          <div class="persona-role">Torino · Pensionato (ex operaio)</div>
-        </div>
-      </div>
-      <div class="persona-quote">"Vorrei farcela da solo, ma non so da dove iniziare"</div>
-      <div class="persona-cols">
-        <div class="persona-col goals">
-          <h4>Obiettivi</h4>
-          <ul>
-            <li>Prenotare visite online</li>
-            <li>Pagare bollette digitalmente</li>
-            <li>Essere autonomo dal figlio</li>
-          </ul>
-        </div>
-        <div class="persona-col frustrations">
-          <h4>Frustrazioni</h4>
-          <ul>
-            <li>Interfacce troppo piccole</li>
-            <li>Paura di sbagliare</li>
-            <li>Parole incomprensibili</li>
-          </ul>
-        </div>
-      </div>
+```
+<div class="persona-card">
+  <div class="persona-header">
+    <div class="persona-avatar">M</div>
+    <div>
+      <div class="persona-name">Mario, 68 anni</div>
+      <div class="persona-role">Torino · Pensionato (ex operaio)</div>
     </div>
+  </div>
+  <div class="persona-quote">"Vorrei farcela da solo, ma non so da dove iniziare"</div>
+  <div class="persona-cols">
+    <div class="persona-col goals">
+      <h4>Obiettivi</h4>
+      <ul>
+        <li>Prenotare visite online</li>
+        <li>Pagare bollette digitalmente</li>
+        <li>Essere autonomo dal figlio</li>
+      </ul>
+    </div>
+    <div class="persona-col frustrations">
+      <h4>Frustrazioni</h4>
+      <ul>
+        <li>Interfacce troppo piccole</li>
+        <li>Paura di sbagliare</li>
+        <li>Parole incomprensibili</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-    <div class="persona-card">
-      <div class="persona-header">
-        <div class="persona-avatar" style="background:#7c3aed;">G</div>
-        <div>
-          <div class="persona-name">Giuseppina, 74 anni</div>
-          <div class="persona-role">Palermo · Pensionata (ex casalinga)</div>
-        </div>
-      </div>
-      <div class="persona-quote">"Mia figlia me lo ha spiegato mille volte ma dimentico sempre"</div>
-      <div class="persona-cols">
-        <div class="persona-col goals">
-          <h4>Obiettivi</h4>
-          <ul>
-            <li>Videochiamare nipoti all'estero</li>
-            <li>Usare il tablet regalato</li>
-          </ul>
-        </div>
-        <div class="persona-col frustrations">
-          <h4>Frustrazioni</h4>
-          <ul>
-            <li>Troppe notifiche</li>
-            <li>Troppi passaggi</li>
-            <li>Si perde e abbandona</li>
-          </ul>
-        </div>
-      </div>
+<div class="persona-card">
+  <div class="persona-header">
+    <div class="persona-avatar" style="background:#7c3aed;">G</div>
+    <div>
+      <div class="persona-name">Giuseppina, 74 anni</div>
+      <div class="persona-role">Palermo · Pensionata (ex casalinga)</div>
     </div>
+  </div>
+  <div class="persona-quote">"Mia figlia me lo ha spiegato mille volte ma dimentico sempre"</div>
+  <div class="persona-cols">
+    <div class="persona-col goals">
+      <h4>Obiettivi</h4>
+      <ul>
+        <li>Videochiamare nipoti all'estero</li>
+        <li>Usare il tablet regalato</li>
+      </ul>
+    </div>
+    <div class="persona-col frustrations">
+      <h4>Frustrazioni</h4>
+      <ul>
+        <li>Troppe notifiche</li>
+        <li>Troppi passaggi</li>
+        <li>Si perde e abbandona</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-    <div class="persona-card">
-      <div class="persona-header">
-        <div class="persona-avatar" style="background:#059669;">R</div>
-        <div>
-          <div class="persona-name">Roberto, 71 anni</div>
-          <div class="persona-role">Bologna · Pensionato (ex insegnante)</div>
-        </div>
-      </div>
-      <div class="persona-quote">"So leggere e scrivere, perché non riesco a fare queste cose?"</div>
-      <div class="persona-cols">
-        <div class="persona-col goals">
-          <h4>Obiettivi</h4>
-          <ul>
-            <li>Usare SPID e fare il 730</li>
-            <li>Essere autonomo al 100%</li>
-          </ul>
-        </div>
-        <div class="persona-col frustrations">
-          <h4>Frustrazioni</h4>
-          <ul>
-            <li>Siti istituzionali caotici</li>
-            <li>Istruzioni presuppongono competenze</li>
-          </ul>
-        </div>
-      </div>
+<div class="persona-card">
+  <div class="persona-header">
+    <div class="persona-avatar" style="background:#059669;">R</div>
+    <div>
+      <div class="persona-name">Roberto, 71 anni</div>
+      <div class="persona-role">Bologna · Pensionato (ex insegnante)</div>
     </div>
+  </div>
+  <div class="persona-quote">"So leggere e scrivere, perché non riesco a fare queste cose?"</div>
+  <div class="persona-cols">
+    <div class="persona-col goals">
+      <h4>Obiettivi</h4>
+      <ul>
+        <li>Usare SPID e fare il 730</li>
+        <li>Essere autonomo al 100%</li>
+      </ul>
+    </div>
+    <div class="persona-col frustrations">
+      <h4>Frustrazioni</h4>
+      <ul>
+        <li>Siti istituzionali caotici</li>
+        <li>Istruzioni presuppongono competenze</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-    <div class="persona-card">
-      <div class="persona-header">
-        <div class="persona-avatar" style="background:#dc2626;">C</div>
-        <div>
-          <div class="persona-name">Carmela, 79 anni</div>
-          <div class="persona-role">Napoli · Pensionata (ex sarta)</div>
-        </div>
-      </div>
-      <div class="persona-quote">"Ai miei tempi si faceva tutto di persona e andava benissimo"</div>
-      <div class="persona-cols">
-        <div class="persona-col goals">
-          <h4>Obiettivi</h4>
-          <ul>
-            <li>Imparare almeno le basi</li>
-            <li>Sentirsi meno esclusa</li>
-          </ul>
-        </div>
-        <div class="persona-col frustrations">
-          <h4>Frustrazioni</h4>
-          <ul>
-            <li>Paura delle truffe</li>
-            <li>Pensa "non fa per me"</li>
-            <li>Figlia perde la pazienza</li>
-          </ul>
-        </div>
-      </div>
+<div class="persona-card">
+  <div class="persona-header">
+    <div class="persona-avatar" style="background:#dc2626;">C</div>
+    <div>
+      <div class="persona-name">Carmela, 79 anni</div>
+      <div class="persona-role">Napoli · Pensionata (ex sarta)</div>
     </div>
+  </div>
+  <div class="persona-quote">"Ai miei tempi si faceva tutto di persona e andava benissimo"</div>
+  <div class="persona-cols">
+    <div class="persona-col goals">
+      <h4>Obiettivi</h4>
+      <ul>
+        <li>Imparare almeno le basi</li>
+        <li>Sentirsi meno esclusa</li>
+      </ul>
+    </div>
+    <div class="persona-col frustrations">
+      <h4>Frustrazioni</h4>
+      <ul>
+        <li>Paura delle truffe</li>
+        <li>Pensa "non fa per me"</li>
+        <li>Figlia perde la pazienza</li>
+      </ul>
+    </div>
+  </div>
+</div>
+```
+
   </div>
 
   <!-- SCENARI -->
+
   <h3 style="font-family:'Fraunces',serif;font-size:1.3rem;color:var(--ink);margin-bottom:1.5rem;">Scenari</h3>
   <div class="scenari-list" style="margin-bottom:3rem;">
 
-    <div class="scenario-card">
-      <div class="scenario-header">
-        <div class="persona-avatar" style="width:40px;height:40px;font-size:1rem;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">M</div>
-        <div><h3>Mario — Prenotare una visita medica online</h3><span>Trigger: il medico gli dice che può prenotare online</span></div>
-      </div>
-      <div class="scenario-body">
-        <div class="scenario-step">
-          <div class="step-icon">1</div>
-          <div class="step-label">Scena</div>
-          <div class="step-text">Mario è a casa da solo. Ha bisogno di prenotare una visita cardiologica ma lo sportello è chiuso.</div>
-        </div>
-        <div class="scenario-step">
-          <div class="step-icon">2</div>
-          <div class="step-label">Trigger</div>
-          <div class="step-text">Il medico gli dice che può prenotare online. Mario vuole farlo da solo senza disturbare la figlia.</div>
-        </div>
-        <div class="scenario-step">
-          <div class="step-icon">3</div>
-          <div class="step-label">Ostacoli</div>
-          <div class="step-text">Google restituisce pagine confuse. Si scoraggia dopo 10 minuti. La figlia gli mostra DigitalMente.</div>
-        </div>
-        <div class="scenario-step">
-          <div class="step-icon">4</div>
-          <div class="step-label">Risoluzione</div>
-          <div class="step-text">Su DigitalMente trova "Servizi sanitari". Istruzioni chiare, passo per passo. Riesce a prenotare.</div>
-        </div>
-        <div class="scenario-step">
-          <div class="step-icon">5</div>
-          <div class="step-label">Epilogo</div>
-          <div class="step-text">Mario si sente orgoglioso. Chiama la figlia per raccontarglielo. Il giorno dopo torna per imparare l'email.</div>
-        </div>
-      </div>
+```
+<div class="scenario-card">
+  <div class="scenario-header">
+    <div class="persona-avatar" style="width:40px;height:40px;font-size:1rem;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">M</div>
+    <div><h3>Mario — Prenotare una visita medica online</h3><span>Trigger: il medico gli dice che può prenotare online</span></div>
+  </div>
+  <div class="scenario-body">
+    <div class="scenario-step">
+      <div class="step-icon">1</div>
+      <div class="step-label">Scena</div>
+      <div class="step-text">Mario è a casa da solo. Ha bisogno di prenotare una visita cardiologica ma lo sportello è chiuso.</div>
     </div>
+    <div class="scenario-step">
+      <div class="step-icon">2</div>
+      <div class="step-label">Trigger</div>
+      <div class="step-text">Il medico gli dice che può prenotare online. Mario vuole farlo da solo senza disturbare la figlia.</div>
+    </div>
+    <div class="scenario-step">
+      <div class="step-icon">3</div>
+      <div class="step-label">Ostacoli</div>
+      <div class="step-text">Google restituisce pagine confuse. Si scoraggia dopo 10 minuti. La figlia gli mostra DigitalMente.</div>
+    </div>
+    <div class="scenario-step">
+      <div class="step-icon">4</div>
+      <div class="step-label">Risoluzione</div>
+      <div class="step-text">Su DigitalMente trova "Servizi sanitari". Istruzioni chiare, passo per passo. Riesce a prenotare.</div>
+    </div>
+    <div class="scenario-step">
+      <div class="step-icon">5</div>
+      <div class="step-label">Epilogo</div>
+      <div class="step-text">Mario si sente orgoglioso. Chiama la figlia per raccontarglielo. Il giorno dopo torna per imparare l'email.</div>
+    </div>
+  </div>
+</div>
 
-    <div class="scenario-card">
-      <div class="scenario-header">
-        <div class="persona-avatar" style="width:40px;height:40px;font-size:1rem;background:#7c3aed;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">G</div>
-        <div><h3>Giuseppina — Videochiamare la nipotina per il compleanno</h3><span>Trigger: il compleanno della nipote in Canada</span></div>
-      </div>
-      <div class="scenario-body">
-        <div class="scenario-step">
-          <div class="step-icon">1</div>
-          <div class="step-label">Scena</div>
-          <div class="step-text">Domenica pomeriggio. La nipotina in Canada compie 5 anni. Giuseppina vuole chiamarla da sola.</div>
-        </div>
-        <div class="scenario-step">
-          <div class="step-icon">2</div>
-          <div class="step-label">Trigger</div>
-          <div class="step-text">Non vuole aspettare che qualcuno la aiuti. La figlia le ha installato DigitalMente prima di partire.</div>
-        </div>
-        <div class="scenario-step">
-          <div class="step-icon">3</div>
-          <div class="step-label">Ostacoli</div>
-          <div class="step-text">Vede troppe icone e si blocca. Ha già cancellato foto per errore. Paura di rompere qualcosa.</div>
-        </div>
-        <div class="scenario-step">
-          <div class="step-icon">4</div>
-          <div class="step-label">Risoluzione</div>
-          <div class="step-text">Il percorso "Videochiamate" ha immagini grandi e testo chiaro. La guida schermata per schermata.</div>
-        </div>
-        <div class="scenario-step">
-          <div class="step-icon">5</div>
-          <div class="step-label">Epilogo</div>
-          <div class="step-text">Giuseppina piange di gioia. Da quel giorno chiama ogni domenica da sola. Il tablet non fa più paura.</div>
-        </div>
-      </div>
+<div class="scenario-card">
+  <div class="scenario-header">
+    <div class="persona-avatar" style="width:40px;height:40px;font-size:1rem;background:#7c3aed;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">G</div>
+    <div><h3>Giuseppina — Videochiamare la nipotina per il compleanno</h3><span>Trigger: il compleanno della nipote in Canada</span></div>
+  </div>
+  <div class="scenario-body">
+    <div class="scenario-step">
+      <div class="step-icon">1</div>
+      <div class="step-label">Scena</div>
+      <div class="step-text">Domenica pomeriggio. La nipotina in Canada compie 5 anni. Giuseppina vuole chiamarla da sola.</div>
     </div>
+    <div class="scenario-step">
+      <div class="step-icon">2</div>
+      <div class="step-label">Trigger</div>
+      <div class="step-text">Non vuole aspettare che qualcuno la aiuti. La figlia le ha installato DigitalMente prima di partire.</div>
+    </div>
+    <div class="scenario-step">
+      <div class="step-icon">3</div>
+      <div class="step-label">Ostacoli</div>
+      <div class="step-text">Vede troppe icone e si blocca. Ha già cancellato foto per errore. Paura di rompere qualcosa.</div>
+    </div>
+    <div class="scenario-step">
+      <div class="step-icon">4</div>
+      <div class="step-label">Risoluzione</div>
+      <div class="step-text">Il percorso "Videochiamate" ha immagini grandi e testo chiaro. La guida schermata per schermata.</div>
+    </div>
+    <div class="scenario-step">
+      <div class="step-icon">5</div>
+      <div class="step-label">Epilogo</div>
+      <div class="step-text">Giuseppina piange di gioia. Da quel giorno chiama ogni domenica da sola. Il tablet non fa più paura.</div>
+    </div>
+  </div>
+</div>
 
-    <div class="scenario-card">
-      <div class="scenario-header">
-        <div class="persona-avatar" style="width:40px;height:40px;font-size:1rem;background:#059669;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">R</div>
-        <div><h3>Roberto — Ottenere SPID e fare il 730 online</h3><span>Trigger: vuole essere completamente autonomo digitalmente</span></div>
-      </div>
-      <div class="scenario-body">
-        <div class="scenario-step">
-          <div class="step-icon">1</div>
-          <div class="step-label">Scena</div>
-          <div class="step-text">Roberto è al computer di sera. Deve fare la dichiarazione dei redditi. Il CAF è lontano, le file lunghe.</div>
-        </div>
-        <div class="scenario-step">
-          <div class="step-icon">2</div>
-          <div class="step-label">Trigger</div>
-          <div class="step-text">Un amico gli dice che con SPID si fa tutto online. Roberto vuole essere autonomo al 100%.</div>
-        </div>
-        <div class="scenario-step">
-          <div class="step-icon">3</div>
-          <div class="step-label">Ostacoli</div>
-          <div class="step-text">Le istruzioni online sono tecniche, presuppongono competenze che non ha. Si sente frustrato.</div>
-        </div>
-        <div class="scenario-step">
-          <div class="step-icon">4</div>
-          <div class="step-label">Risoluzione</div>
-          <div class="step-text">Su DigitalMente trova "SPID e documenti". Ogni passaggio è spiegato in parole semplici. In un'ora ha lo SPID.</div>
-        </div>
-        <div class="scenario-step">
-          <div class="step-icon">5</div>
-          <div class="step-label">Epilogo</div>
-          <div class="step-text">Roberto completa il 730 da solo per la prima volta. Consiglia DigitalMente a tre amici del circolo.</div>
-        </div>
-      </div>
+<div class="scenario-card">
+  <div class="scenario-header">
+    <div class="persona-avatar" style="width:40px;height:40px;font-size:1rem;background:#059669;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">R</div>
+    <div><h3>Roberto — Ottenere SPID e fare il 730 online</h3><span>Trigger: vuole essere completamente autonomo digitalmente</span></div>
+  </div>
+  <div class="scenario-body">
+    <div class="scenario-step">
+      <div class="step-icon">1</div>
+      <div class="step-label">Scena</div>
+      <div class="step-text">Roberto è al computer di sera. Deve fare la dichiarazione dei redditi. Il CAF è lontano, le file lunghe.</div>
     </div>
+    <div class="scenario-step">
+      <div class="step-icon">2</div>
+      <div class="step-label">Trigger</div>
+      <div class="step-text">Un amico gli dice che con SPID si fa tutto online. Roberto vuole essere autonomo al 100%.</div>
+    </div>
+    <div class="scenario-step">
+      <div class="step-icon">3</div>
+      <div class="step-label">Ostacoli</div>
+      <div class="step-text">Le istruzioni online sono tecniche, presuppongono competenze che non ha. Si sente frustrato.</div>
+    </div>
+    <div class="scenario-step">
+      <div class="step-icon">4</div>
+      <div class="step-label">Risoluzione</div>
+      <div class="step-text">Su DigitalMente trova "SPID e documenti". Ogni passaggio è spiegato in parole semplici. In un'ora ha lo SPID.</div>
+    </div>
+    <div class="scenario-step">
+      <div class="step-icon">5</div>
+      <div class="step-label">Epilogo</div>
+      <div class="step-text">Roberto completa il 730 da solo per la prima volta. Consiglia DigitalMente a tre amici del circolo.</div>
+    </div>
+  </div>
+</div>
 
-    <div class="scenario-card">
-      <div class="scenario-header">
-        <div class="persona-avatar" style="width:40px;height:40px;font-size:1rem;background:#dc2626;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">C</div>
-        <div><h3>Carmela — Imparare a visualizzare le ricette digitali</h3><span>Trigger: il medico passa alle ricette solo digitali</span></div>
-      </div>
-      <div class="scenario-body">
-        <div class="scenario-step">
-          <div class="step-icon">1</div>
-          <div class="step-label">Scena</div>
-          <div class="step-text">Carmela è in cucina. Ha paura di internet. Il medico le dice che da questo mese le ricette saranno solo digitali.</div>
-        </div>
-        <div class="scenario-step">
-          <div class="step-icon">2</div>
-          <div class="step-label">Trigger</div>
-          <div class="step-text">Non può più farne a meno. Deve imparare almeno questo. La figlia le installa DigitalMente.</div>
-        </div>
-        <div class="scenario-step">
-          <div class="step-icon">3</div>
-          <div class="step-label">Ostacoli</div>
-          <div class="step-text">YouTube va troppo veloce. La figlia perde la pazienza. Carmela si sente stupida e si arrabbia.</div>
-        </div>
-        <div class="scenario-step">
-          <div class="step-icon">4</div>
-          <div class="step-label">Risoluzione</div>
-          <div class="step-text">Il tono di DigitalMente è rispettoso. Può fermare e ripetere. Impara a ritmo suo senza vergogna.</div>
-        </div>
-        <div class="scenario-step">
-          <div class="step-icon">5</div>
-          <div class="step-label">Epilogo</div>
-          <div class="step-text">Carmela non si sente più esclusa. Vuole imparare anche i messaggi vocali. Il telefono non è più nemico.</div>
-        </div>
-      </div>
+<div class="scenario-card">
+  <div class="scenario-header">
+    <div class="persona-avatar" style="width:40px;height:40px;font-size:1rem;background:#dc2626;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">C</div>
+    <div><h3>Carmela — Imparare a visualizzare le ricette digitali</h3><span>Trigger: il medico passa alle ricette solo digitali</span></div>
+  </div>
+  <div class="scenario-body">
+    <div class="scenario-step">
+      <div class="step-icon">1</div>
+      <div class="step-label">Scena</div>
+      <div class="step-text">Carmela è in cucina. Ha paura di internet. Il medico le dice che da questo mese le ricette saranno solo digitali.</div>
     </div>
+    <div class="scenario-step">
+      <div class="step-icon">2</div>
+      <div class="step-label">Trigger</div>
+      <div class="step-text">Non può più farne a meno. Deve imparare almeno questo. La figlia le installa DigitalMente.</div>
+    </div>
+    <div class="scenario-step">
+      <div class="step-icon">3</div>
+      <div class="step-label">Ostacoli</div>
+      <div class="step-text">YouTube va troppo veloce. La figlia perde la pazienza. Carmela si sente stupida e si arrabbia.</div>
+    </div>
+    <div class="scenario-step">
+      <div class="step-icon">4</div>
+      <div class="step-label">Risoluzione</div>
+      <div class="step-text">Il tono di DigitalMente è rispettoso. Può fermare e ripetere. Impara a ritmo suo senza vergogna.</div>
+    </div>
+    <div class="scenario-step">
+      <div class="step-icon">5</div>
+      <div class="step-label">Epilogo</div>
+      <div class="step-text">Carmela non si sente più esclusa. Vuole imparare anche i messaggi vocali. Il telefono non è più nemico.</div>
+    </div>
+  </div>
+</div>
+```
+
   </div>
 
   <!-- COMPETITIVE -->
+
   <h3 style="font-family:'Fraunces',serif;font-size:1.3rem;color:var(--ink);margin-bottom:1.5rem;">Analisi Competitiva</h3>
   <table class="competitive-table" style="margin-bottom:1rem;">
     <thead>
@@ -1429,12 +1525,14 @@
 </section>
 
 <!-- ONTOLOGIA -->
+
 <section id="ontologia">
   <div class="section-label">Fase 2</div>
   <h2 class="section-title">Ontologia & Tassonomia</h2>
   <p class="section-subtitle">Struttura informativa della piattaforma: alberatura funzionale e modello entità-relazioni.</p>
 
   <!-- ALBERATURA -->
+
   <h3 style="font-family:'Fraunces',serif;font-size:1.3rem;color:var(--ink);margin-bottom:1.5rem;">Alberatura Funzionale</h3>
   <div class="tree-container" style="margin-bottom:3rem;">
     <div class="tree">
@@ -1505,6 +1603,7 @@
   </div>
 
   <!-- ER DIAGRAM -->
+
   <h3 style="font-family:'Fraunces',serif;font-size:1.3rem;color:var(--ink);margin-bottom:1.5rem;">Diagramma Entità-Relazioni</h3>
   <div class="er-container">
     <div class="er-diagram">
@@ -1567,40 +1666,160 @@
     </div>
     <div class="er-relations">
       <div class="er-relation">
-        <strong>Utente</strong>
-        <span class="rel-verb">segue (N:M)</span>
-        <strong>Percorso</strong>
+        <div class="er-relation-header">
+          <strong>Utente</strong>
+          <span class="rel-verb">segue (N:M)</span>
+          <strong>Percorso</strong>
+        </div>
+        <div class="er-relation-attrs">
+          <p class="attr-name">Attributi della relazione:</p>
+          <p>data_inizio · stato · percentuale_completamento</p>
+        </div>
       </div>
       <div class="er-relation">
-        <strong>Percorso</strong>
-        <span class="rel-verb">contiene (1:N)</span>
-        <strong>Lezione</strong>
+        <div class="er-relation-header">
+          <strong>Percorso</strong>
+          <span class="rel-verb">contiene (1:N)</span>
+          <strong>Lezione</strong>
+        </div>
+        <div class="er-relation-attrs">
+          <p class="attr-name">Attributi della relazione:</p>
+          <p>ordine · obbligatoria</p>
+        </div>
       </div>
       <div class="er-relation">
-        <strong>Utente</strong>
-        <span class="rel-verb">ha (1:N)</span>
-        <strong>Progresso</strong>
+        <div class="er-relation-header">
+          <strong>Utente</strong>
+          <span class="rel-verb">ha (1:N)</span>
+          <strong>Progresso</strong>
+        </div>
+        <div class="er-relation-attrs">
+          <p class="attr-name">Attributi della relazione:</p>
+          <p>data_aggiornamento · punteggio</p>
+        </div>
       </div>
       <div class="er-relation">
-        <strong>Progresso</strong>
-        <span class="rel-verb">riferito a (N:1)</span>
-        <strong>Lezione</strong>
+        <div class="er-relation-header">
+          <strong>Progresso</strong>
+          <span class="rel-verb">riferito a (N:1)</span>
+          <strong>Lezione</strong>
+        </div>
+        <div class="er-relation-attrs">
+          <p class="attr-name">Attributi della relazione:</p>
+          <p>tentativi · ultimo_accesso</p>
+        </div>
       </div>
       <div class="er-relation">
-        <strong>Utente</strong>
-        <span class="rel-verb">collegato a (1:1)</span>
-        <strong>Familiare</strong>
+        <div class="er-relation-header">
+          <strong>Utente</strong>
+          <span class="rel-verb">collegato a (1:1)</span>
+          <strong>Familiare</strong>
+        </div>
+        <div class="er-relation-attrs">
+          <p class="attr-name">Attributi della relazione:</p>
+          <p>data_collegamento · notifiche_attive</p>
+        </div>
       </div>
       <div class="er-relation">
-        <strong>Utente</strong>
-        <span class="rel-verb">contatta (N:M)</span>
-        <strong>Tutor</strong>
+        <div class="er-relation-header">
+          <strong>Utente</strong>
+          <span class="rel-verb">contatta (N:M)</span>
+          <strong>Tutor</strong>
+        </div>
+        <div class="er-relation-attrs">
+          <p class="attr-name">Attributi della relazione:</p>
+          <p>data_contatto · canale · durata_sessione</p>
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- TAVOLA SINOTTICA -->
+
+  <h3 style="font-family:'Fraunces',serif;font-size:1.3rem;color:var(--ink);margin-top:3rem;margin-bottom:0.5rem;">Tavola Sinottica</h3>
+  <p style="color:var(--gray);font-size:0.9rem;margin-bottom:1rem;">Rappresentazione completa di entità, attributi, relazioni e valori del sistema DigitalMente.</p>
+  <table class="sinottica-table">
+    <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Nome</th>
+        <th>Attributi</th>
+        <th>Valori esempio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Entità</td>
+        <td>Utente</td>
+        <td>ID_utente, nome, cognome, età, email, livello</td>
+        <td><span class="tag-val">1</span><span class="tag-val">Mario</span><span class="tag-val">Rossi</span><span class="tag-val">68</span><span class="tag-val">principiante</span></td>
+      </tr>
+      <tr>
+        <td>Entità</td>
+        <td>Percorso</td>
+        <td>ID_percorso, titolo, descrizione, difficoltà, durata_stimata</td>
+        <td><span class="tag-val">3</span><span class="tag-val">Servizi sanitari</span><span class="tag-val">base</span><span class="tag-val">120min</span></td>
+      </tr>
+      <tr>
+        <td>Entità</td>
+        <td>Lezione</td>
+        <td>ID_lezione, titolo, testo, url_video, ordine</td>
+        <td><span class="tag-val">7</span><span class="tag-val">Prenotare una visita</span><span class="tag-val">2</span></td>
+      </tr>
+      <tr>
+        <td>Entità</td>
+        <td>Progresso</td>
+        <td>ID_progresso, data_completamento, stato</td>
+        <td><span class="tag-val">completato</span><span class="tag-val">in_corso</span><span class="tag-val">non_iniziato</span></td>
+      </tr>
+      <tr>
+        <td>Entità</td>
+        <td>Familiare</td>
+        <td>ID_familiare, nome, email, relazione</td>
+        <td><span class="tag-val">Anna</span><span class="tag-val">figlia</span></td>
+      </tr>
+      <tr>
+        <td>Entità</td>
+        <td>Tutor</td>
+        <td>ID_tutor, nome, disponibilità</td>
+        <td><span class="tag-val">lunedì-venerdì</span><span class="tag-val">9:00-18:00</span></td>
+      </tr>
+      <tr>
+        <td>Relazione</td>
+        <td>Utente segue Percorso</td>
+        <td>data_inizio, stato, percentuale_completamento</td>
+        <td><span class="tag-val">2024-03-01</span><span class="tag-val">in_corso</span><span class="tag-val">40%</span></td>
+      </tr>
+      <tr>
+        <td>Relazione</td>
+        <td>Percorso contiene Lezione</td>
+        <td>ordine, obbligatoria</td>
+        <td><span class="tag-val">2</span><span class="tag-val">true</span></td>
+      </tr>
+      <tr>
+        <td>Relazione</td>
+        <td>Utente ha Progresso</td>
+        <td>data_aggiornamento, punteggio</td>
+        <td><span class="tag-val">2024-03-15</span><span class="tag-val">85</span></td>
+      </tr>
+      <tr>
+        <td>Relazione</td>
+        <td>Utente collegato a Familiare</td>
+        <td>data_collegamento, notifiche_attive</td>
+        <td><span class="tag-val">2024-02-10</span><span class="tag-val">true</span></td>
+      </tr>
+      <tr>
+        <td>Relazione</td>
+        <td>Utente contatta Tutor</td>
+        <td>data_contatto, canale, durata_sessione</td>
+        <td><span class="tag-val">2024-03-12</span><span class="tag-val">chat</span><span class="tag-val">15min</span></td>
+      </tr>
+    </tbody>
+  </table>
 </section>
 
 <!-- COREOGRAFIA -->
+
 <section id="coreografia">
   <div class="section-label">Fase 3</div>
   <h2 class="section-title">Coreografia</h2>
@@ -1698,6 +1917,7 @@
 </section>
 
 <!-- PROTOTIPO CTA -->
+
 <section id="prototipo" style="background:var(--bg);">
   <div class="proto-cta">
     <h2>Esplora il Prototipo</h2>
@@ -1726,5 +1946,6 @@
     event.target.classList.add('active');
   }
 </script>
+
 </body>
 </html>
