@@ -17,18 +17,10 @@ Il progetto nasce dall'analisi del divario digitale in Italia: solo il 12% degli
 | Fase | Contenuto |
 |------|-----------|
 | Fase 0 | Brief, obiettivi, KPI, stakeholders, scope |
-| Fase 1 | Proto-personas, scenari, competitive analysis, desk research |
+| Fase 1 | Proto-personas (4 quadranti), scenari, competitive analysis, desk research |
 | Fase 2 | Problem statement, How Might We, requisiti, accessibilità |
 | Fase 3 | Alberatura funzionale, diagramma ER, mappe funzionali |
 | Fase 4 | Prototipo interattivo HTML/CSS/JS |
-
----
-
-## Fonti
-
-- [ISTAT — Cittadini e ICT 2024](https://www.istat.it/comunicato-stampa/cittadini-e-ict-anno-2024/)
-- [Eurostat — Digitalisation 2024](https://ec.europa.eu/eurostat/web/interactive-publications/digitalisation-2024)
-- [European Commission — Digital Decade Country Report Italy 2024](https://digital-strategy.ec.europa.eu/en/factpages/italy-2024-digital-decade-country-report) 
 
 ---
 
@@ -36,6 +28,15 @@ Il progetto nasce dall'analisi del divario digitale in Italia: solo il 12% degli
 
 - 🌐 **Sito progetto:** https://rosy15bhi.github.io/DigitalMente-ux/
 - 🖥️ **Prototipo interattivo:** https://rosy15bhi.github.io/DigitalMente-ux/prototype.html
+- 🗂️ **Board Miro (Alberatura + ER):** https://miro.com/app/board/uXjVHRiQryE=/?share_link_id=752070522683
+
+---
+
+## Fonti
+
+- [ISTAT — Cittadini e ICT 2024](https://www.istat.it/comunicato-stampa/cittadini-e-ict-anno-2024/)
+- [Eurostat — Digitalisation 2024](https://ec.europa.eu/eurostat/web/interactive-publications/digitalisation-2024)
+- [European Commission — Digital Decade Country Report Italy 2024](https://digital-strategy.ec.europa.eu/en/factpages/italy-2024-digital-decade-country-report)
 
 ---
 
@@ -45,3 +46,4 @@ Il progetto nasce dall'analisi del divario digitale in Italia: solo il 12% degli
 ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=github&logoColor=white)
+![Miro](https://img.shields.io/badge/Miro-FFD02F?style=for-the-badge&logo=miro&logoColor=black)
